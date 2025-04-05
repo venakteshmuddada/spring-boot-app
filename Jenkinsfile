@@ -22,9 +22,7 @@ pipeline {
 
         stage('Build JAR with Maven') {
             steps {
-                dir('spring-boot-app') {
-                    sh 'mvn clean package -DskipTests'
-                }
+                sh 'mvn clean package -DskipTests'
             }
         }
 
@@ -39,9 +37,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                dir('spring-boot-app') {
-                    sh "docker build -t $ECR_REPO_URL:$IMAGE_TAG ."
-                }
+                sh "docker build -t $ECR_REPO_URL:$IMAGE_TAG ."
             }
         }
 
