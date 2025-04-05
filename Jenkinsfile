@@ -33,10 +33,12 @@ pipeline {
         }
 
         stage('Build Docker Image') {
-            steps {
-                sh 'docker build -t $ECR_REPO_URL:$IMAGE_TAG .'
-            }
+    steps {
+        dir('spring-boot-app') {
+            sh 'docker build -t 703671891941.dkr.ecr.us-east-1.amazonaws.com/springboot-repo:latest .'
         }
+    }
+}
 
         stage('Push Docker Image to ECR') {
             steps {
